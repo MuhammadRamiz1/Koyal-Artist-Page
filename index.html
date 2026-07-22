@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koyal – Artists</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    :root {
+      --red: #EC297B;
+      --red-dark: #fa1e7a;
+      --gold: #c9a84c;
+      --bg: #02000F;
+      --border: #3d3d3d73;
+      --muted: rgba(255, 255, 255, .55);
+    }
+
+    @font-face {
+      font-family: 'BebasNeue';
+      src: url('./assets/BebasNeue-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    p,
+    span,
+    button,
+    input {
+      font-family: "Outfit", sans-serif;
+
+    }
+
+    button:disabled {
+      cursor: no-drop;
+      opacity: 0.8;
+    }
+
+    /* ── Navbar ── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--bg);
+      padding: 18px 0;
+      background-image: url(./assets/Web/header-bg.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .site-nav .logo {
+      height: 60px;
+    }
+
+    /* ── Hero ── */
+    .hero-section {
+      position: relative;
+      /* background: url('hero_desktop_banner.png') center/cover no-repeat; */
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right,
+          rgba(0, 0, 0, .70) 0%,
+          rgba(0, 0, 0, .50) 45%,
+          rgba(0, 0, 0, .15) 100%);
+    }
+
+    .hero-section>.container {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Left text */
+    .hero-title-ur {
+      font-size: clamp(3.5rem, 7.5vw, 6.5rem);
+      font-weight: 900;
+      line-height: 1;
+      color: #fff;
+      text-shadow: 0 4px 32px rgba(0, 0, 0, .9);
+      letter-spacing: .02em;
+    }
+
+    h2 {
+      font-size: 18px;
+    }
+
+    .hero-subtitle-en {
+      font-size: .82rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .65);
+      margin-top: 4px;
+    }
+
+    .hero-tagline {
+      font-size: .88rem;
+      color: rgba(255, 255, 255, .60);
+      line-height: 1.7;
+      margin-top: 14px;
+    }
+
+    /* ── Form Card ── */
+    .form-card {
+      background: #0000001A;
+      /* backdrop-filter: blur(20px); */
+      /* -webkit-backdrop-filter: blur(20px); */
+      border-radius: 18px;
+      padding: 30px 28px 28px;
+      box-shadow: 0px 0px 7px 0px #D52571;
+      margin-top: 20px;
+      border: 2px solid #EC297BCC;
+
+    }
+
+    /* Operator buttons */
+    .op-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 8px;
+      border-radius: 5px;
+      border: 1.5px solid var(--border);
+      background: rgba(22, 22, 22, 0.5);
+      color: #fff;
+      font-size: .84rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      width: 100%;
+    }
+
+    .op-btn:hover {
+      border-color: rgba(255, 255, 255, .30);
+      /* background: rgba(255, 255, 255, .09); */
+    }
+
+    .op-btn.active {
+      border-color: var(--red);
+      /* background: rgba(224, 32, 32, .14); */
+    }
+
+    .op-icon {
+      width: auto;
+      height: 14px;
+      /* flex-shrink: 0; */
+    }
+
+
+
+    /* Inputs */
+    .form-control-dark {
+      /* background: rgba(255, 255, 255, .06) !important; */
+      border: 1.5px solid var(--border) !important;
+      border-radius: 5px !important;
+      color: #fff !important;
+      font-size: .95rem;
+      padding: 13px 16px !important;
+      transition: border-color .2s !important;
+      background-color: transparent !important;
+    }
+
+    .form-control-dark:focus {
+      border-color: var(--red) !important;
+      box-shadow: none !important;
+      /* background: rgba(255, 255, 255, .08) !important; */
+    }
+
+    .form-control-dark::placeholder {
+      color: rgba(255, 255, 255, 0.61) !important;
+
+    }
+
+    /* Phone row */
+    .phone-wrapper {
+      position: relative;
+    }
+
+    .phone-wrapper .form-control-dark {
+      padding-right: 110px !important;
+    }
+
+    .get-otp-btn {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 7px 15px;
+      background: var(--red);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+
+    .get-otp-btn:hover {
+      background: var(--red-dark);
+    }
+
+    /* Resend */
+    .resend-link {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    .resend-link button {
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 500;
+      background: inherit;
+      outline: none;
+      border: none;
+      text-decoration: underline;
+
+    }
+
+    .resend-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Continue */
+    .btn-continue {
+      background: var(--red);
+      border: none;
+      border-radius: 5px;
+      color: rgba(255, 255, 255, 1);
+      font-size: 1.05rem;
+      font-weight: 600;
+      padding: 14px;
+      width: 100%;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      letter-spacing: .03em;
+    }
+
+    .btn-continue:hover {
+      background: var(--red-dark);
+    }
+
+    .btn-continue:active {
+      transform: scale(.98);
+    }
+
+    .sub-notice {
+      font-size: .72rem;
+      color: var(--muted);
+      line-height: 1.65;
+      text-align: center;
+      margin-bottom: 0px;
+
+    }
+
+    .sub-notice strong {
+      color: rgba(255, 255, 255, .75);
+    }
+
+    /* Success */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 24px 0 8px;
+    }
+
+    .success-msg .checkmark {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .success-msg h3 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+
+    .success-msg p {
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+
+
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      margin-bottom: 26px;
+    }
+
+
+
+
+
+    .main-heading {
+      font-size: 50px;
+      color: rgba(223, 223, 223, 1);
+      font-family: "BebasNeue";
+      letter-spacing: 2px;
+      margin: 0px;
+
+    }
+
+    .main-heading span {
+      display: block;
+      font-size: 120px;
+
+      background: linear-gradient(180deg, #DFDFDF 0%, #F005BF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      font-family: "BebasNeue";
+      line-height: 1;
+      margin-top: -25px;
+
+
+    }
+
+    .main-tagline {
+      color: rgba(223, 223, 223, 1);
+      font-size: 25px;
+      text-transform: capitalize;
+
+    }
+
+ 
+   
+   
+
+    /* ── Features ── */
+    .features-bar {
+
+      border: 2px solid #D52571;
+      border-radius: 18px;
+      max-width: 75%;
+      margin-inline: auto;
+      background: radial-gradient(circle at center, rgba(255, 0, 140, 0.22) 0%, rgba(120, 0, 90, 0.12) 45%, rgba(20, 5, 35, 0.92) 100%), rgba(12, 8, 30, 0.55);
+      backdrop-filter: blur(5px);
+    }
+
+
+    .feat-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 32px 0;
+      position: relative;
+
+    }
+
+    .feat-item--border::before {
+      /* position: absolute;
+      right: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--red-dark);
+      content: ' ';
+      height: 55px;
+      width: 1px; */
+    }
+
+    .feat-icon {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      border: 2px solid #D52571;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feat-icon img {
+      width: 40px;
+      /* height: 24px; */
+
+    }
+
+    /* .feat-icon i {
+      font-size: 1.25rem;
+      color: #fff;
+    } */
+
+    h5.feat-label {
+      font-size: 28px;
+      margin-bottom: 2px;
+      font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    p.feat-label {
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    .feat-sub {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      font-size: .78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .site-footer a {
+      color: var(--red);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed;
+      top: 28px;
+      right: 20px;
+      transform: translateY(80px);
+      padding: 11px 22px;
+      border-radius: 10px;
+      font-size: 1rem;
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .5);
+      z-index: 9999;
+      opacity: 0;
+      transition: transform .3s, opacity .3s;
+      white-space: nowrap;
+    }
+
+
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .artist-card {
+      border: 1px solid #B802C4;
+
+      height: 119px;
+      width: 100%;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .artist-card h3,
+    .artist-card h5 {
+      font-family: BebasNeue;
+      margin-bottom: 0px;
+    }
+
+    .artist-card h3 {
+      font-size: 35px;
+    }
+
+    .artist-card h5 {
+      font-size: 20px;
+      text-align: left;
+    }
+
+
+    .artist-card .content {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .input-box {
+      position: relative;
+    }
+
+    .input-box .form-control-dark {
+      padding-left: 40px !important;
+    }
+
+    .input-box .img-div {
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+      height: 20px;
+      width: auto;
+    }
+
+    .input-box .img-div img {
+      height: 100%;
+      width: 100%;
+    }
+
+    /* ── Shake keyframe ── */
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-7px);
+      }
+
+      40% {
+        transform: translateX(7px);
+      }
+
+      60% {
+        transform: translateX(-5px);
+      }
+
+      80% {
+        transform: translateX(5px);
+      }
+    }
+
+    .shake {
+      animation: shake .4s ease;
+    }
+
+    .footer {
+      position: relative;
+
+    }
+
+    @media screen and (max-width: 1220px) {
+      .features-bar {
+        max-width: 90%;
+
+      }
+
+      .artist-card h3 {
+        font-size: 28px;
+      }
+
+      .artist-card h5 {
+        font-size: 18px;
+      }
+
+      .main-tagline {
+        font-size: 23px;
+
+      }
+
+    }
+
+    @media screen and (max-width: 992px) {
+      .main-tagline {
+        font-size: 20px;
+      }
+
+      .features-bar {
+
+        max-width: 95%;
+        border-radius: 20px;
+
+      }
+
+      .site-nav .logo {
+        height: 40px;
+      }
+
+
+
+
+
+      .feat-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 16px 0;
+        flex-direction: column;
+        width: 100%;
+
+      }
+
+      .feat-item--border::before {
+        display: none;
+      }
+
+      .feat-icon {
+        width: 45px;
+        height: 45px;
+
+      }
+
+      .feat-icon img {
+        width: 14px;
+        height: 14px;
+
+      }
+
+      h5.feat-label {
+        text-align: center;
+        font-size: 16px;
+      }
+
+      p.feat-label {
+        text-align: center;
+        font-size: 14px;
+        width: max-content;
+        margin-inline: auto;
+      }
+
+
+     
+
+   
+     
+
+
+    }
+
+    @media screen and (max-width:768px) {
+      .main-tagline {
+        font-size: 18px;
+      }
+
+      .main-heading span {
+        font-size: 90px;
+        margin-top: -15px;
+
+
+      }
+
+      .artist-card {
+
+        height: 240px;
+
+      }
+
+      .artist-card img {
+        object-fit: contain;
+      }
+
+      .artist-card .content {
+        top: 13%;
+        transform: translateY(-50%);
+        width: 100%;
+        left: 0;
+      }
+
+      .artist-card h3,
+      .artist-card h5 {
+        text-align: center;
+      }
+
+      .artist-card img {
+        object-fit: cover;
+      }
+
+      h5.feat-label {
+        font-size: 15px;
+      }
+
+      p.feat-label {
+        font-size: 13px;
+
+      }
+      .site-nav{
+        background-image: none;
+      }
+
+    }
+
+    @media screen and (max-width:576px) {
+      .main-heading span {
+        font-size: 80px;
+        margin-top: -15px;
+
+      }
+
+   
+
+    }
+  </style>
+</head>
+
+<body class="">
+
+
+
+
+
+  <nav class="site-nav">
+
+
+    <div class="container d-flex justify-content-center mb-5">
+      <img src="./Koyal-Logo.webp" class="logo" />
+    </div>
+  </nav>
+
+
+
+  <section class="hero-section">
+    <!-- Absolute -->
+    <div class="absolute left-0 h-full top-[20%] ">
+      <img src="./assets/Web/left-side.png" />
+    </div>
+    <div class="absolute right-0 h-full top-[10%] z-[-1]">
+      <img src="./assets/Web/right-side.png" />
+    </div>
+    <!-- Absolute -->
+
+
+    <div class="container pb-md-5 pb-2  ">
+      <div class="row align-items-center g-md-5 g-3">
+
+        <div class="col-lg-7 text-center ">
+          <!-- <img src="./hero_desktop_banner.png" class="w-100 h-100 d-none d-md-block" alt="hero-section-desktop">
+          <img src="./hero_mob_banner.png" class="w-100 h-100 d-block d-md-none" alt="hero-section-mobile"> -->
+          <h1 class="main-heading">Apni Zubaan<span>APNI KOYAL</span></h1>
+          <p class="main-tagline ">Jo dil ko bhaaye, wohi bajaye</p>
+          <div id="main-languages" class="grid grid-cols-3 gap-2"></div>
+        </div>
+
+        <div class="col-lg-5 ">
+          <div class="form-card">
+
+            <div class="row g-2 mb-3 mx-lg-1 mx-1" id="ops">
+              <div class="col-4">
+                <button class="op-btn " data-op="telenor">
+                  <img src="./telenor-logo.png" class="op-icon" /> <span>Telenor</span>
+                </button>
+              </div>
+              <div class="col-4">
+                <button class="op-btn" data-op="zong">
+                  <img src="./zong-logo.png" class="op-icon" /> <span>Zong</span>
+                </button>
+              </div>
+              <div class="col-4">
+                <button class="op-btn" data-op="ufone">
+                  <img src="./ufone-logo.png" class="op-icon" /> <span>Ufone</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="phone-wrapper input-box mb-3">
+              <div class="img-div">
+                <img src="./assets/phone-icon.svg" />
+              </div>
+              <input type="tel" id="phone" class="form-control form-control-dark" placeholder="03xxxxxxxxx"
+                maxlength="11" inputmode="numeric" />
+              <button class="get-otp-btn">GET OTP</button>
+            </div>
+
+            <div class="mb-2 input-box">
+              <div class="img-div">
+                <img src="./assets/lock-icon.svg" />
+              </div>
+              <input type="text" id="otp" class="form-control form-control-dark" placeholder="Enter 4 Digit OTP Code"
+                maxlength="4" inputmode="numeric" />
+            </div>
+
+            <div class="resend-link mb-3">
+              Didn't Receive a OTP? <button id="resendLink" disabled>Resend OTP</button>
+            </div>
+
+            <button class="btn-continue mb-3" id="continue-btn">Continue</button>
+
+            <p class="sub-notice">
+              Subscribe karne se aapki <strong>subscription activate</strong> ho jati hai.
+              Subscription Operator price par <strong>auto-renew</strong> hoti rahe gi.
+              Aap settings se anytime cancel kar sakte hain.
+            </p>
+
+            <div class="success-msg" id="successMsg">
+              <div class="checkmark">✅</div>
+              <h3>Subscription Activated!</h3>
+              <!-- <p>Aap ab Koyal ka Muharram kalam enjoy kar sakte hain.</p> -->
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="footer ">
+    <div class="absolute bottom-[-25%] max-md:bottom-[-30%] translate-y-[-50%] left-0 right-0 w-full h-full z-[-1]">
+      <img src="./assets/Web/footer-bg.png"
+        class="w-full max-md:hidden" />
+      <img src="./assets/App/footer.png"
+        class="w-full md:hidden" />
+      </div>
+
+    <div class="container mb-5 mt-3">
+      <div class="row features-bar ">
+      </div>
+    </div>
+  </section>
+
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
+
+<script type="module">
+  import { logApi, getDeviceInfo } from './logApi.js';
+  const phoneNo = document.getElementById('phone').value.trim();
+  const operator = document.querySelector('.op-btn.active span')?.innerHTML?.toLowerCase()
+  const btn = document.querySelector('.btn-continue');
+  document.querySelectorAll('.op-btn').forEach((e, i) => {
+    document.querySelectorAll('.op-btn')[i].addEventListener('click', () => selectOp(e));
+  });
+  document.querySelector('.get-otp-btn').addEventListener('click', (e) => getOTP(e))
+  document.getElementById('resendLink').addEventListener('click', resendOTP)
+  logApi({ user_id: '', action_type: 'page_view_home', operator: '', platform_type: '', location_details: '' }, 'home')
+
+  let otpSent = false;
+  let resendTimer = null;
+
+  document.getElementById('phone').addEventListener('change', () => {
+    otpSent = false
+    document.querySelector('.get-otp-btn').disabled = false
+
+
+  })
+
+  function getOTP(e) {
+    const phone = document.getElementById('phone').value.trim();
+    const op = document.querySelector('.op-btn.active span')?.innerHTML?.toLowerCase()
+    if (!op) return toast('Operator is required')
+    if (!/^03\d{9}$/.test(phone)) {
+      shakeEl('phone');
+      toast('Please enter a valid 11-digit number (03xxxxxxxxx)');
+      return;
+    }
+    otpSent = true;
+    const otpBtn = document.querySelector('.get-otp-btn')
+
+    async function sendOTP() {
+      const baseUrl = `https://apiv2.koyal.pk/api/v2/web/subscriber/verify-details`;
+      otpBtn.innerHTML = 'Wait...'
+      otpBtn.disabled = true
+
+      const res = await fetch(baseUrl, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          type: "MSISDN",
+          value: phone?.startsWith('0') ? '+92' + phone?.slice(1) : phone,
+          operator: op,
+          platformType: "web",
+        }),
+      });
+      otpBtn.innerHTML = 'GET OTP'
+   
+
+      const final = await res?.json();
+      if (final) {
+        toast('OTP sent to ' + phone, 'success');
+        startCooldown();
+
+
+      }
+
+
+
+    }
+
+    sendOTP()
+
+  }
+
+  async function resendOTP(e) {
+    e.preventDefault();
+    const op = document.querySelector('.op-btn.active span')?.innerHTML?.toLowerCase()
+    if (!op) return toast('Operator is required')
+    const phone = document.getElementById('phone').value.trim();
+    if (!phone) { toast('Enter your phone number first'); return; }
+
+
+    try {
+      const baseUrl = `https://apiv2.koyal.pk/api/v2/web/subscriber/verify-details`;
+      const res = await fetch(baseUrl, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          type: "MSISDN",
+          value: phone?.startsWith('0') ? '+92' + phone?.slice(1) : phone,
+          operator: op,
+          platformType: "web",
+        }),
+      });
+      const final = await res?.json();
+      if (final) {
+        toast('OTP resend successfully', 'success')
+        startCooldown();
+
+      }
+    } catch (err) {
+      toast('OTP resend failed')
+
+
+    }
+
+
+  }
+
+  function startCooldown() {
+    const link = document.getElementById('resendLink');
+    const COOLDOWN = 30000; // 30 seconds
+    link.disabled = true
+    link.textContent = 'Resend OTP';
+    clearTimeout(resendTimer);
+    resendTimer = setTimeout(() => {
+      link.textContent = 'Resend OTP';
+      link.disabled = false
+
+    }, COOLDOWN);
+  }
+
+  // Login Flow
+
+  const submitOtp = async () => {
+    const otp = document.getElementById('otp')?.value?.trim()
+    const op = document.querySelector('.op-btn.active span')?.innerHTML?.toLowerCase()
+    const phone = document.getElementById('phone').value.trim();
+
+
+    if (otp.length === 4) {
+      logApi({
+        user_id: "",
+        action_type: "submit_otp",
+        operator: op,
+        phone_number: phone,
+      });
+      await verifyDetails(otp);
+    } else {
+      toast('OTP must be at least 4 digits')
+      btn.disabled = false
+      btn.textContent = 'Continue';
+
+
+    }
+  };
+
+  const info = getDeviceInfo();
+  async function verifyDetails(otp) {
+
+    const location = localStorage.getItem('location')
+    const baseUrl = `https://apiv2.koyal.pk/api/v2/web/subscriber/otp-verify`;
+    const phone = refactorPhoneNo(document.getElementById('phone')?.value.trim());
+    const op = document.querySelector('.op-btn.active span')?.innerHTML?.toLowerCase()
+    try {
+      btn.textContent = 'Processing…';
+      btn.disabled = true;
+      const res = await fetch(baseUrl, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          type: "MSISDN",
+          value: phone,
+          otp,
+          profile_from: "WEB",
+          profile_by: "MSISDN",
+          msisdn_network: op?.toUpperCase(),
+          device: info.device,
+          browser: info.browser,
+          operating_system: info.operating_system,
+          ip_address: location?.ip_address,
+          city: location?.city,
+          state: location?.state,
+          country: location?.country,
+          operator: op,
+        }),
+      });
+      if (!res.ok) {
+        throw new Error(final?.message || "Something went wrong");
+      }
+      const final = await res?.json();
+
+
+      if (final?.response?.access_token) {
+        logApi({
+          user_id: final?.response?.data?.id,
+          action_type: "login_success",
+          operator: op,
+          phone_number: phone,
+        });
+        subscription({
+          token: final?.response?.access_token,
+          user_id: final?.response?.data?.id,
+          isSubscribe: final?.response?.subscriber?.status !== "free",
+          operator: op,
+          no: phone,
+        });
+      }
+      return await final
+    }
+    catch (err) {
+      btn.disabled = false
+      btn.textContent = 'Continue';
+      toast('Please enter a valid OTP')
+
+    }
+  }
+
+
+  const subscription = async (data) => {
+    // try {
+    let res = null;
+    if (!data?.isSubscribe) {
+      if (data?.operator == "ufone") {
+        res = await fetch(
+          `https://ufoneapi.koyal.pk/api/ufone_api/promotional_subscription`,
+          {
+            headers: {
+              "X-Client-Type": "web",
+              "content-type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify({
+              MSISDN: data?.no?.includes("+")
+                ? data?.no?.replace("+", "")
+                : data?.no,
+              UserId: `${data?.user_id}`,
+            }),
+          }
+        );
+        if (!res.ok) {
+          throw new Error(res?.message || "Something went wrong");
+        }
+
+        res = await res?.json();
+
+      } else if (data?.operator == "telenor") {
+        let apiResponse = await fetch(
+          "https://apiv2.koyal.pk/api/v2/web/subscriber/payment-url-v2",
+
+          {
+            headers: {
+              Authorization: `Bearer ${data?.token}`,
+              "content-type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify({ msisdn: data?.no }),
+          }
+        );
+        apiResponse = await apiResponse.json();
+
+        const body = {
+          action: "submit",
+          cid: apiResponse?.response?.cid,
+          token: apiResponse?.response?.token,
+        };
+        let apiCallBackV2 = await fetch(
+          "https://apiv2.koyal.pk/api/v2/web/subscriber/callback-v2",
+          {
+            headers: {
+              Authorization: `Bearer ${data?.token}`,
+              "content-type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(body),
+          }
+        );
+        apiCallBackV2 = await apiCallBackV2?.json();
+
+        const final = await fetch(
+          `https://apiv2.koyal.pk/api/v2/web/subscriber/confirm_sub`,
+
+          {
+            headers: {
+              Authorization: `Bearer ${data?.token}`,
+              "content-type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify({
+              cid: apiResponse?.response?.cid,
+              resp_code: apiCallBackV2?.response?.res_code,
+            }),
+          }
+        );
+        if (final?.ok) {
+
+        }
+        res = await final?.json();
+      } else if (data?.operator == "zong") {
+        const zongApi = await fetch(
+          `https://zongapi.koyal.pk/api/zong/web/subscribe`,
+          {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              msisdn: data?.no,
+              bundle: "95006102",
+              channel: "web",
+            }),
+          }
+        );
+        if (!zongApi.ok) {
+          throw new Error(zongApi?.message || "Something went wrong");
+        }
+        res = await zongApi?.json();
+      } else {
+      }
+    } else {
+      logApi({
+        action_type: "already_subscribed",
+        operator: data?.operator,
+        phone_number: data?.no,
+        user_id: data?.user_id
+      });
+      res = { success: true };
+    }
+
+    if (res?.status == "success" || res?.success) {
+      btn.disabled = false;
+      btn.textContent = "Continue"
+      logApi({
+        action_type: "subscribed_success",
+        operator: data?.operator,
+        phone_number: data?.no,
+      });
+      if (data?.isSubscribe) {
+        window.location.href = `https://koyal.pk?ref=${data?.token}`;
+      } else {
+        window.location.href = `https://koyal.pk?ref=${data?.token}`;
+
+      }
+    }
+    // } catch (err) {
+    //   toast('Something went wrong! Please try again later')
+    //   console.log('err', err)
+    //   throw err
+    // }
+
+  };
+
+  // Login Flow
+
+  document.getElementById('continue-btn').addEventListener('click', subscribe)
+
+  async function subscribe() {
+    const phone = document.getElementById('phone')?.value.trim();
+    const otp = document.getElementById('otp')?.value?.trim();
+    if (!document.querySelector('.op-btn.active')) return toast('Operator is required')
+    if (!phone) return toast('Phone number is required')
+    if (!otp) return toast('OTP code is required')
+
+    if (!/^03\d{9}$/.test(phone)) { shakeEl('phone'); toast('Enter a valid phone number'); return; }
+    if (!otpSent) { toast('Request an OTP first'); return; }
+    if (!/^\d{4}$/.test(otp)) { shakeEl('otp'); toast('Enter the 4-digit OTP code'); return; }
+
+
+    await submitOtp()
+
+
+
+  }
+
+  function shakeEl(id) {
+    const el = document.getElementById(id);
+    el.classList.remove('shake');
+    void el.offsetWidth;
+    el.classList.add('shake');
+    el.addEventListener('animationend', () => el.classList.remove('shake'), { once: true });
+  }
+
+
+
+  function toast(msg, type = 'error') {
+    const notyf = new Notyf({
+      position: {
+        x: 'right',
+        y: 'top',
+      },
+    });
+
+    if (type == 'error') {
+      notyf.error(msg)
+
+    } else {
+      notyf.success(msg)
+
+    }
+  }
+
+
+  function selectOp(e) {
+    document.querySelectorAll('.op-btn')?.forEach(b => b?.classList?.remove('active'));
+    e.classList.add('active');
+  }
+
+  function refactorPhoneNo(no) {
+
+    return no?.startsWith('0') ? '+92' + no?.slice(1) : no
+
+
+  }
+
+  document.addEventListener("keyup", (e) => {
+    if (e?.code == "Enter") {
+      subscribe();
+    }
+  });
+
+</script>
+
+<!-- Data -->
+<script>
+  const data = [
+    { title: 'PUNJABI', tagline: 'HITS', mobImg: './assets/App/Punjabi.png', img: './assets/Web/Punjabi.png' },
+    { title: 'SARAIKI', tagline: 'VIBES', mobImg: './assets/App/Saraiki.png', img: './assets/Web/Saraiki.png' },
+    { title: 'PASHTO', tagline: 'MUSIC', mobImg: './assets/App/Pashto.png', img: './assets/Web/Pashto.png' },
+    { title: 'SINDHI', tagline: "BEATS", mobImg: './assets/App/Sindhi.png', img: './assets/Web/Sindhi.png' },
+    { title: 'BALOCHI', tagline: "TUNES", mobImg: './assets/App/Balochi.png', img: './assets/Web/Balochi.png' },
+    { title: 'URDU', tagline: 'CLASSICS', mobImg: './assets/App/Urdu.png', img: './assets/Web/Urdu.png' },
+  ]
+
+  const featuresData = [
+    { title: 'Tracks', count: '100,000+', icon: './assets/music.png' },
+    { title: 'Artists', count: '1000+', icon: './assets/artists.png' },
+    { title: 'Monthly Billing', count: 'Easy', icon: './assets/monthly-billing.png' },
+    { title: 'New Updates', count: 'Daily', icon: './assets/system-update.png' },
+  ]
+
+
+  function renderContent() {
+    const lang = document.getElementById('main-languages')
+    const isMob = window.innerWidth <= 768;
+
+    lang.innerHTML = data?.map(a => `<div class="artist-card">
+    <div class="content">
+    <h3>${a?.title}</h3>
+    <h5>${a?.tagline}</h5>
+      </div>
+      <img src="${isMob ? a?.mobImg : a?.img}" class="w-full h-full " />
+    </div>`).join('')
+
+
+  }
+  renderContent()
+  let lastMob = window.innerWidth < 768;
+  window.addEventListener('resize', () => {
+    const nowMob = window.innerWidth < 768;
+    if (nowMob !== lastMob) { lastMob = nowMob; renderContent(); }
+  });
+
+
+
+  function renderFeatures() {
+    const featureDiv = document.querySelector('.features-bar')
+    featureDiv.innerHTML = featuresData?.map(e => (`<div class="col-3 px-2">
+        <div class="feat-item   ">
+          <div class="feat-icon">
+            <img src="${e?.icon}">
+          </div>
+          <div>
+            <h5 class="feat-label">${e?.count}</h5>
+            <p class="feat-label mb-0" >${e?.title}</p>
+          </div>
+        </div>
+      </div>`)).join('')
+
+
+  }
+  renderFeatures()
+
+
+</script>
+
+
+
+</html>
